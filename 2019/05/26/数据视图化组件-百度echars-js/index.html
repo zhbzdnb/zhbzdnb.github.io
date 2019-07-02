@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "5f89d94e"
+    });
+  daovoice('update');
+  </script>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/zhbzdnb.github.io/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/zhbzdnb.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/zhbzdnb.github.io/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/zhbzdnb.github.io/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/zhbzdnb.github.io/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/zhbzdnb.github.io/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/zhbzdnb.github.io/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="js相关,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言前几天老大发了个需求，要求某一信息数据视图化(扇形图、柱状图、折线图),我就去详细查看了项目里实现此功能的代码，发现了是使用百度的echars.js 实现一个简单的扇形图引入 123456789101112131415161718192021var data = genData(50);option = &amp;#123;    title : &amp;#123;        text: &amp;apos;同">
+<meta name="keywords" content="js相关">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据视图化组件百度echarsjs">
+<meta property="og:url" content="http://yoursite.com/2019/05/26/数据视图化组件-百度echars-js/index.html">
+<meta property="og:site_name" content="虾">
+<meta property="og:description" content="前言前几天老大发了个需求，要求某一信息数据视图化(扇形图、柱状图、折线图),我就去详细查看了项目里实现此功能的代码，发现了是使用百度的echars.js 实现一个简单的扇形图引入 123456789101112131415161718192021var data = genData(50);option = &amp;#123;    title : &amp;#123;        text: &amp;apos;同">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-26T09:25:46.939Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据视图化组件百度echarsjs">
+<meta name="twitter:description" content="前言前几天老大发了个需求，要求某一信息数据视图化(扇形图、柱状图、折线图),我就去详细查看了项目里实现此功能的代码，发现了是使用百度的echars.js 实现一个简单的扇形图引入 123456789101112131415161718192021var data = genData(50);option = &amp;#123;    title : &amp;#123;        text: &amp;apos;同">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/zhbzdnb.github.io/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/05/26/数据视图化组件-百度echars-js/">
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "5f89d94e"
+    });
+  daovoice('update');
+  </script>
+
+  <title>数据视图化组件百度echarsjs | 虾</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/zhbzdnb.github.io/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">虾</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">我能像你那么洒脱就好了</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/zhbzdnb.github.io/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/zhbzdnb.github.io/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/zhbzdnb.github.io/tags/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/zhbzdnb.github.io/categories/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/zhbzdnb.github.io/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/zhbzdnb.github.io/2019/05/26/数据视图化组件-百度echars-js/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZHB">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/zhbzdnb.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="虾">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据视图化组件百度echarsjs</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-26T15:00:05+08:00">
+                2019-05-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/zhbzdnb.github.io/categories/js相关/" itemprop="url" rel="index">
+                    <span itemprop="name">js相关</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>前几天老大发了个需求，要求某一信息数据视图化(扇形图、柱状图、折线图),我就去详细查看了项目里实现此功能的代码，发现了是使用百度的echars.js</p>
+<h3 id="实现一个简单的扇形图"><a href="#实现一个简单的扇形图" class="headerlink" title="实现一个简单的扇形图"></a>实现一个简单的扇形图</h3><p>引入<script type="text/javascript" src="js/echarts.js"></script></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">var data = genData(50);</span><br><span class="line"></span><br><span class="line">option = &#123;</span><br><span class="line">    title : &#123;</span><br><span class="line">        text: &apos;同名数量统计&apos;,</span><br><span class="line">        subtext: &apos;纯属虚构&apos;,</span><br><span class="line">        x:&apos;center&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    tooltip : &#123;</span><br><span class="line">        trigger: &apos;item&apos;,</span><br><span class="line">        formatter: &quot;&#123;a&#125; &lt;br/&gt;&#123;b&#125; : &#123;c&#125; (&#123;d&#125;%)&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    legend: &#123;</span><br><span class="line">        type: &apos;scroll&apos;,</span><br><span class="line">        orient: &apos;vertical&apos;,</span><br><span class="line">        right: 10,</span><br><span class="line">        top: 20,</span><br><span class="line">        bottom: 20,</span><br><span class="line">        data: data.legendData,</span><br><span class="line"></span><br><span class="line">​</span><br></pre></td></tr></table></figure>
+<pre><code>selected: data.selected
+</code></pre><p>},<br>series : [<br>    {<br>        name: ‘姓名’,<br>        type: ‘pie’,<br>        radius : ‘55%’,<br>        center: [‘40%’, ‘50%’],<br>        data: data.seriesData,<br>        itemStyle: {<br>            emphasis: {<br>                shadowBlur: 10,<br>                shadowOffsetX: 0,<br>                shadowColor: ‘rgba(0, 0, 0, 0.5)’<br>            }<br>        }<br>    }<br>]<br>​<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">function genData(count) &#123;</span><br><span class="line">    var nameList = [</span><br><span class="line">        &apos;赵&apos;, &apos;钱&apos;, &apos;孙&apos;, &apos;李&apos;, &apos;周&apos;, &apos;吴&apos;, &apos;郑&apos;, &apos;王&apos;, &apos;冯&apos;, &apos;陈&apos;, &apos;褚&apos;, &apos;卫&apos;, &apos;蒋&apos;, &apos;沈&apos;, &apos;韩&apos;, &apos;杨&apos;, &apos;朱&apos;, &apos;秦&apos;, &apos;尤&apos;, &apos;许&apos;, &apos;何&apos;, &apos;吕&apos;, &apos;施&apos;, &apos;张&apos;, &apos;孔&apos;, &apos;曹&apos;, &apos;严&apos;, &apos;华&apos;, &apos;金&apos;, &apos;魏&apos;, &apos;陶&apos;, &apos;姜&apos;, &apos;戚&apos;, &apos;谢&apos;, &apos;邹&apos;, &apos;喻&apos;, &apos;柏&apos;, &apos;水&apos;, &apos;窦&apos;, &apos;章&apos;, &apos;云&apos;, &apos;苏&apos;, &apos;潘&apos;, &apos;葛&apos;, &apos;奚&apos;, &apos;范&apos;, &apos;彭&apos;, &apos;郎&apos;, &apos;鲁&apos;, &apos;韦&apos;, &apos;昌&apos;, &apos;马&apos;, &apos;苗&apos;, &apos;凤&apos;, &apos;花&apos;, &apos;方&apos;, &apos;俞&apos;, &apos;任&apos;, &apos;袁&apos;, &apos;柳&apos;, &apos;酆&apos;, &apos;鲍&apos;, &apos;史&apos;, &apos;唐&apos;, &apos;费&apos;, &apos;廉&apos;, &apos;岑&apos;, &apos;薛&apos;, &apos;雷&apos;, &apos;贺&apos;, &apos;倪&apos;, &apos;汤&apos;, &apos;滕&apos;, &apos;殷&apos;, &apos;罗&apos;, &apos;毕&apos;, &apos;郝&apos;, &apos;邬&apos;, &apos;安&apos;, &apos;常&apos;, &apos;乐&apos;, &apos;于&apos;, &apos;时&apos;, &apos;傅&apos;, &apos;皮&apos;, &apos;卞&apos;, &apos;齐&apos;, &apos;康&apos;, &apos;伍&apos;, &apos;余&apos;, &apos;元&apos;, &apos;卜&apos;, &apos;顾&apos;, &apos;孟&apos;, &apos;平&apos;, &apos;黄&apos;, &apos;和&apos;, &apos;穆&apos;, &apos;萧&apos;, &apos;尹&apos;, &apos;姚&apos;, &apos;邵&apos;, &apos;湛&apos;, &apos;汪&apos;, &apos;祁&apos;, &apos;毛&apos;, &apos;禹&apos;, &apos;狄&apos;, &apos;米&apos;, &apos;贝&apos;, &apos;明&apos;, &apos;臧&apos;, &apos;计&apos;, &apos;伏&apos;, &apos;成&apos;, &apos;戴&apos;, &apos;谈&apos;, &apos;宋&apos;, &apos;茅&apos;, &apos;庞&apos;, &apos;熊&apos;, &apos;纪&apos;, &apos;舒&apos;, &apos;屈&apos;, &apos;项&apos;, &apos;祝&apos;, &apos;董&apos;, &apos;梁&apos;, &apos;杜&apos;, &apos;阮&apos;, &apos;蓝&apos;, &apos;闵&apos;, &apos;席&apos;, &apos;季&apos;, &apos;麻&apos;, &apos;强&apos;, &apos;贾&apos;, &apos;路&apos;, &apos;娄&apos;, &apos;危&apos;</span><br><span class="line">    ];</span><br><span class="line">    var legendData = [];</span><br><span class="line">    var seriesData = [];</span><br><span class="line">    var selected = &#123;&#125;;</span><br><span class="line">    for (var i = 0; i &lt; 50; i++) &#123;</span><br><span class="line">        name = Math.random() &gt; 0.65</span><br><span class="line">            ? makeWord(4, 1) + &apos;·&apos; + makeWord(3, 0)</span><br><span class="line">            : makeWord(2, 1);</span><br><span class="line">        legendData.push(name);</span><br><span class="line">        seriesData.push(&#123;</span><br><span class="line">            name: name,</span><br><span class="line">            value: Math.round(Math.random() * 100000)</span><br><span class="line">        &#125;);</span><br><span class="line">        selected[name] = i &lt; 6;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">​</span><br></pre></td></tr></table></figure></p>
+<p>return {<br>    legendData: legendData,<br>    seriesData: seriesData,<br>    selected: selected<br>};</p>
+<p>function makeWord(max, min) {<br>    var nameLen = Math.ceil(Math.random() <em> max + min);<br>    var name = [];<br>    for (var i = 0; i &lt; nameLen; i++) {<br>        name.push(nameList[Math.round(Math.random() </em> nameList.length - 1)]);<br>    }<br>    return name.join(‘’);<br>}<br>​<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>方便简单哈哈哈哈，百度牛逼。后面深入需要对扇形图或者柱状图点击的事件，<a href="https://www.cnblogs.com/surfaces/p/4502432.html" target="_blank" rel="noopener">这篇文章解决了我的问题</a>。</p>
+<p><a href="https://www.echartsjs.com" target="_blank" rel="noopener">百度echars.js官网</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/vx.jpg" alt="ZHB 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/zfb.jpg" alt="ZHB 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/zhbzdnb.github.io/tags/js相关/" rel="tag"># js相关</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/zhbzdnb.github.io/2019/05/19/初识JIN/" rel="next" title="初识JIN">
+                <i class="fa fa-chevron-left"></i> 初识JIN
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/zhbzdnb.github.io/2019/05/26/使用ConcurrentLinkedQueue安全队列解决集合队列边写边读报错/" rel="prev" title="使用ConcurrentLinkedQueue安全队列解决集合队列边写边读报错">
+                使用ConcurrentLinkedQueue安全队列解决集合队列边写边读报错 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MjEyNC8xODY3MQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">ZHB</p>
+              <p class="site-description motion-element" itemprop="description">生活不止，代码不停。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/zhbzdnb.github.io/archives/">
+              
+                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/zhbzdnb.github.io/categories/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/zhbzdnb.github.io/tags/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="http://wpa.qq.com/msgrd?v=3&uin=1987731442&site=qq&menu=yes" target="_blank" title="使用qq联系我">
+                      
+                        <i class="fa fa-fw fa-globe"></i>使用qq联系我</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://tieba.baidu.com/f?kw=%BD%E4%C9%AB&fr=ala0&tpl=5" title="戒色吧" target="_blank">戒色吧</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#实现一个简单的扇形图"><span class="nav-number"></span> <span class="nav-text">实现一个简单的扇形图</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=1350202699&auto=0&height=32"></iframe>
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        ﻿<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZHB</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+		<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/zhbzdnb.github.io/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/zhbzdnb.github.io/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/zhbzdnb.github.io/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/zhbzdnb.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/zhbzdnb.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/zhbzdnb.github.io/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/zhbzdnb.github.io/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/zhbzdnb.github.io/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/zhbzdnb.github.io/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/zhbzdnb.github.io/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/zhbzdnb.github.io/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/zhbzdnb.github.io/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/zhbzdnb.github.io/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

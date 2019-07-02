@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "5f89d94e"
+    });
+  daovoice('update');
+  </script>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/zhbzdnb.github.io/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/zhbzdnb.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/zhbzdnb.github.io/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/zhbzdnb.github.io/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/zhbzdnb.github.io/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/zhbzdnb.github.io/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/zhbzdnb.github.io/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="面试,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="上午的话小型公司就写个面试题，跟那个hr聊了晓得她不知道技术之后疯狂跟她谈技术，看到她脸色变了我才停下，哇草面试题一堆都不会在小会议室里百度她貌似发现了，不过也不重要。啧。这尼玛这个公司ssh的项目，boss专门是做开发的，神奇。 ajax是什么？如何创建一个ajax?答：一种创建交互式网页应用的网页开发技术。step1. 创建XMLHttpRequest对象，也就是创建一个异步调用对象；step">
+<meta name="keywords" content="面试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1.7面试">
+<meta property="og:url" content="http://yoursite.com/2019/01/07/1-7面试/index.html">
+<meta property="og:site_name" content="虾">
+<meta property="og:description" content="上午的话小型公司就写个面试题，跟那个hr聊了晓得她不知道技术之后疯狂跟她谈技术，看到她脸色变了我才停下，哇草面试题一堆都不会在小会议室里百度她貌似发现了，不过也不重要。啧。这尼玛这个公司ssh的项目，boss专门是做开发的，神奇。 ajax是什么？如何创建一个ajax?答：一种创建交互式网页应用的网页开发技术。step1. 创建XMLHttpRequest对象，也就是创建一个异步调用对象；step">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-02-02T12:27:51.855Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="1.7面试">
+<meta name="twitter:description" content="上午的话小型公司就写个面试题，跟那个hr聊了晓得她不知道技术之后疯狂跟她谈技术，看到她脸色变了我才停下，哇草面试题一堆都不会在小会议室里百度她貌似发现了，不过也不重要。啧。这尼玛这个公司ssh的项目，boss专门是做开发的，神奇。 ajax是什么？如何创建一个ajax?答：一种创建交互式网页应用的网页开发技术。step1. 创建XMLHttpRequest对象，也就是创建一个异步调用对象；step">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/zhbzdnb.github.io/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/01/07/1-7面试/">
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "5f89d94e"
+    });
+  daovoice('update');
+  </script>
+
+  <title>1.7面试 | 虾</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/zhbzdnb.github.io/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">虾</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">我能像你那么洒脱就好了</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/zhbzdnb.github.io/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/zhbzdnb.github.io/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/zhbzdnb.github.io/tags/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/zhbzdnb.github.io/categories/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/zhbzdnb.github.io/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/zhbzdnb.github.io/2019/01/07/1-7面试/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZHB">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/zhbzdnb.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="虾">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">1.7面试</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-07T19:16:16+08:00">
+                2019-01-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/zhbzdnb.github.io/categories/面试/" itemprop="url" rel="index">
+                    <span itemprop="name">面试</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="上午的话小型公司就写个面试题，跟那个hr聊了晓得她不知道技术之后疯狂跟她谈技术，看到她脸色变了我才停下，哇草面试题一堆都不会在小会议室里百度她貌似发现了，不过也不重要。啧。这尼玛这个公司ssh的项目，boss专门是做开发的，神奇。"><a href="#上午的话小型公司就写个面试题，跟那个hr聊了晓得她不知道技术之后疯狂跟她谈技术，看到她脸色变了我才停下，哇草面试题一堆都不会在小会议室里百度她貌似发现了，不过也不重要。啧。这尼玛这个公司ssh的项目，boss专门是做开发的，神奇。" class="headerlink" title="上午的话小型公司就写个面试题，跟那个hr聊了晓得她不知道技术之后疯狂跟她谈技术，看到她脸色变了我才停下，哇草面试题一堆都不会在小会议室里百度她貌似发现了，不过也不重要。啧。这尼玛这个公司ssh的项目，boss专门是做开发的，神奇。"></a>上午的话小型公司就写个面试题，跟那个hr聊了晓得她不知道技术之后疯狂跟她谈技术，看到她脸色变了我才停下，哇草面试题一堆都不会在小会议室里百度她貌似发现了，不过也不重要。啧。这尼玛这个公司ssh的项目，boss专门是做开发的，神奇。</h4><ol>
+<li><p>ajax是什么？如何创建一个ajax?<br>答：一种创建交互式网页应用的网页开发技术。<br>step1. 创建XMLHttpRequest对象，也就是创建一个异步调用对象；<br>step2. 创建一个新的HTTP请求，并指定改HTTP请求的方法、URL以及验证信息；<br>step3. 设置响应HTTP状态变化的函数；<br>step4. 发送HTTP请求；<br>step5. 获取异步调用返回的数据；<br>step6. 使用javascript和DOM实现局部刷新；</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">  var xmlhttp;</span><br><span class="line">  function createXMLHttpRequest()&#123;</span><br><span class="line">  xmlhttp=null;</span><br><span class="line"> if (window.XMLHttpRequest)&#123;</span><br><span class="line">   xmlhttp=new xmlHttpRequest(); //Netscape浏览器中的创建方式</span><br><span class="line"> &#125;else if(window.ActiveXObject)&#123;</span><br><span class="line">   xmlhttp=new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);//IE浏览器的创建方式</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> //异步调用服务器段数据</span><br><span class="line"> if(xmlhttp!=null)&#123;</span><br><span class="line">   xmlhttp.open(&quot;GET/POST&quot;,url,true);  //创建HTTP请求</span><br><span class="line">   xmlhttp.onreadystatechange=httpStateChange;//设置HTTP请求状态变化的函数</span><br><span class="line">   xmlhttp.send(null);  //发送请求</span><br><span class="line"> &#125;else&#123;</span><br><span class="line">   alert(&quot;不支持XHR&quot;)</span><br><span class="line"> &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">//响应HTTP请求状态变化的函数</span><br><span class="line">  function httpStateChange()&#123;//判断异步调用是否完成</span><br><span class="line">    if(xmlhttp.readyState==4)&#123;//readyState==4表示后台处理完成了</span><br><span class="line">      if(xmlhttp.status==200||(xmlhttp.status==0)&#123;//状态码为0是本地响应成果，200表示处理的结果是ok的</span><br><span class="line">      //判断异步调用是否成功,如果成功开始局部更新数据</span><br><span class="line">        //code...</span><br><span class="line">      &#125;else&#123;</span><br><span class="line">       alert(&quot;出错状态码：&quot;+xmlhttp.status+&quot;出错信息：&quot;+xmlhttp.statusText);</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p> 选择的记一下步骤，这他妈还是主要记这个 </p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;url,data,type,error(),success()&#125;);</span><br></pre></td></tr></table></figure>
+<p> 还有load，post，get方法，不一一题，直接写原生态的ajax这谁顶得住。</p>
+</li>
+<li><p>struts2常用标签<br>if-eles if-else 、iterator、date、debug、property  struts有使用过这个标签库基本用一次就没继续想了，struts2我学的很烂.</p>
+</li>
+<li><p>request的常用方法<br>getAttribute、setAttribute、getParameter。这三个是真正用的很多的。</p>
+</li>
+<li><p>附加题java闭包<br><a href="https://blog.csdn.net/quanaianzj/article/details/81540677" target="_blank" rel="noopener">java闭包</a></p>
+</li>
+<li><p>ssh项目的工作流程<br>  jsp—&gt;struts2接收请求—》struts2的action调用业务逻辑，业务逻辑调用业务组件—&gt;使spring注入ioc,aop—&gt;业务组件根据hibernate映射关系去查询数据库，struts2根据结果返回页面<br>  就是通过jsp页面的url点击产生请求，struts2接受请求，运行具体方法，spring注入ioc、aop，struts2的执行代码中，调用hibernate的方法，hibernate根据映射关系查询数据库，struts2接受数据返回jsp页面;</p>
+</li>
+<li><p>ssm项目的工作流程<br> jsp —》dispacherServlvet—查找》handerMapping—》找到controller的请求–》<br>   controller 调用业务逻辑—》业务逻辑处理后返回modelandview<br>   dispacherServlet-查询视图解析器–》找到modelandview对应到视图返回到页面</p>
+<p>  通过jsp页面的url点击产生请求，dispacherServler（分发器)接受请求，查询HanderMapping，找到处理请求的controller，执行controller的方法代码，调用service层的具体业务逻辑（代码),service层调用dao层mapper文件的各种sql语句映射，返回数据到modelandview，并将数据展示到modelandview指定的视图。</p>
+<h4 id="下午是华为总部某附属公司的一个面试，那个公司好像是搭建不久，面我的是一个四十多的程序员"><a href="#下午是华为总部某附属公司的一个面试，那个公司好像是搭建不久，面我的是一个四十多的程序员" class="headerlink" title="下午是华为总部某附属公司的一个面试，那个公司好像是搭建不久，面我的是一个四十多的程序员."></a>下午是华为总部某附属公司的一个面试，那个公司好像是搭建不久，面我的是一个四十多的程序员.</h4></li>
+<li><p>说一说你项目里索引失效的情况</p>
+<pre><code>like查询是以%开头(以%结尾没有事),如果列类型是字符串，那一定要在条件中将数据使用引号引用起来,否则不使用索引
+</code></pre></li>
+<li><p>Springmvc的controller是属于单例还是多例,以及controller是否能有局部变量</p>
+<pre><code>[这里就有很好的解释](https://blog.csdn.net/qq_27026603/article/details/67953879)
+</code></pre><p>   总的来说，可以单例或者多例，单例推荐使用更加安全，</p>
+<p>   如果要定义局部变量，那么需要给controller添加注解@Scope(“prototype”)改为多例。</p>
+</li>
+<li><p>maven里的profile有什么用<br> 答：profile文件是maven用于支持项目更换不同环境。<a href="https://www.cnblogs.com/0201zcr/p/6262762.html" target="_blank" rel="noopener">profile学习</a></p>
+</li>
+<li><p>项目里有用到多线程吗<br> ps：之前被问到过，这次我用上次找的答案，他听到回答后跳过了。<br> 答：我这种javaweb项目基本没用到多线程，而且有多线程的操作一般都已经被开发框架实现了，一般涉及网络应用才会有多线程，但我只是指定模块进行开发.</p>
+</li>
+<li><p>讲一讲spring aop具体如何使用</p>
+<p>   先看下aop设计</p>
+<ol>
+<li>每个 Bean 都会被 JDK 或者 Cglib 代理。取决于是否有接口。</li>
+<li>每个 Bean 会有多个“方法拦截器”。注意：拦截器分为两层，外层由 Spring 内核控制流程，内层拦截器是用户设置，也就是 AOP。</li>
+<li><p>当代理方法被调用时，先经过外层拦截器，外层拦截器根据方法的各种信息判断该方法应该执行哪些“内层拦截器”。内层拦截器的设计就是职责连的设计。</p>
+<p>​     </p>
+<p>aop的问题基本使用这两点去扯</p>
+<p>第一：代理的创建；<br>创建代理工厂时，默认会在拦截器数组尾部再增加一个默认拦截器 —— 用于最终的调用目标方法。<br>当调用 getProxy 方法的时候，会根据接口数量大余 0 条件返回一个代理对象（JDK or Cglib）。<br>注意：创建代理对象时，同时会创建一个外层拦截器，这个拦截器就是 Spring 内核的拦截器。用于控制整个 AOP 的流程。</p>
+<p>第二：代理的调用。<br>​    当对代理对象进行调用时，就会触发外层拦截器。<br>外层拦截器根据代理配置信息，创建内层拦截器链。创建的过程中，会根据表达式判断当前拦截是否匹配这个拦截器。而这个拦截器链设计模式就是职责链模式。<br>当整个链条执行到最后时，就会触发创建代理时那个尾部的默认拦截器，从而调用目标方法。最后返回。</p>
+<p>啊啊啊不行不行，实在抽象，我现在就只能理解是aop是spring的一个组件，spring的每个bean都有方法拦截器，一层属于spring内部控制，一层属于aop我们自己配置的。当方法拦截器调用时触发外层spring控制的拦截器，然后会对这个调用是否匹配内层配置的拦截器。</p>
+</li>
+</ol>
+</li>
+</ol>
+<ol start="6">
+<li>mysql的问的挺多<br>   大概就是这样，这个老男人真牛皮</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/vx.jpg" alt="ZHB 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/zfb.jpg" alt="ZHB 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/zhbzdnb.github.io/tags/面试/" rel="tag"># 面试</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/zhbzdnb.github.io/2019/01/06/1-6下午电话面/" rel="next" title="1.6下午电话面">
+                <i class="fa fa-chevron-left"></i> 1.6下午电话面
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/zhbzdnb.github.io/2019/02/06/next主题添加分享组件添加过程/" rel="prev" title="next主题添加分享组件添加过程">
+                next主题添加分享组件添加过程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MjEyNC8xODY3MQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">ZHB</p>
+              <p class="site-description motion-element" itemprop="description">生活不止，代码不停。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/zhbzdnb.github.io/archives/">
+              
+                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/zhbzdnb.github.io/categories/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/zhbzdnb.github.io/tags/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="http://wpa.qq.com/msgrd?v=3&uin=1987731442&site=qq&menu=yes" target="_blank" title="使用qq联系我">
+                      
+                        <i class="fa fa-fw fa-globe"></i>使用qq联系我</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://tieba.baidu.com/f?kw=%BD%E4%C9%AB&fr=ala0&tpl=5" title="戒色吧" target="_blank">戒色吧</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#上午的话小型公司就写个面试题，跟那个hr聊了晓得她不知道技术之后疯狂跟她谈技术，看到她脸色变了我才停下，哇草面试题一堆都不会在小会议室里百度她貌似发现了，不过也不重要。啧。这尼玛这个公司ssh的项目，boss专门是做开发的，神奇。"><span class="nav-number">1.</span> <span class="nav-text">上午的话小型公司就写个面试题，跟那个hr聊了晓得她不知道技术之后疯狂跟她谈技术，看到她脸色变了我才停下，哇草面试题一堆都不会在小会议室里百度她貌似发现了，不过也不重要。啧。这尼玛这个公司ssh的项目，boss专门是做开发的，神奇。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#下午是华为总部某附属公司的一个面试，那个公司好像是搭建不久，面我的是一个四十多的程序员"><span class="nav-number">2.</span> <span class="nav-text">下午是华为总部某附属公司的一个面试，那个公司好像是搭建不久，面我的是一个四十多的程序员.</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=1350202699&auto=0&height=32"></iframe>
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        ﻿<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZHB</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+		<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/zhbzdnb.github.io/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/zhbzdnb.github.io/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/zhbzdnb.github.io/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/zhbzdnb.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/zhbzdnb.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/zhbzdnb.github.io/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/zhbzdnb.github.io/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/zhbzdnb.github.io/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/zhbzdnb.github.io/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/zhbzdnb.github.io/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/zhbzdnb.github.io/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/zhbzdnb.github.io/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/zhbzdnb.github.io/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
