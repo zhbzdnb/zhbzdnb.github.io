@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "5f89d94e"
+    });
+  daovoice('update');
+  </script>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/zhbzdnb.github.io/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/zhbzdnb.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/zhbzdnb.github.io/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/zhbzdnb.github.io/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/zhbzdnb.github.io/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/zhbzdnb.github.io/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/zhbzdnb.github.io/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="mongodb,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="安装决定进行学习mongodb的时候是在菜鸟教程上面进行安装，真他妈的坑，教你安装直装版，还叫你进行配置，直接安装的版本配置文件、log文件存放路径、数据库存放路径早就意见给安了。 下载连接https://www.runoob.com/mongodb/mongodb-window-install.html 下载msi包 直接安装，无需配置windows服务，安装的时候已经配好。 配置MongoDB">
+<meta name="keywords" content="mongodb">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mongodb安装配置卸载配置安全性使用java访问">
+<meta property="og:url" content="http://yoursite.com/2019/07/07/mongodb安装配置卸载配置安全性使用java访问/index.html">
+<meta property="og:site_name" content="虾">
+<meta property="og:description" content="安装决定进行学习mongodb的时候是在菜鸟教程上面进行安装，真他妈的坑，教你安装直装版，还叫你进行配置，直接安装的版本配置文件、log文件存放路径、数据库存放路径早就意见给安了。 下载连接https://www.runoob.com/mongodb/mongodb-window-install.html 下载msi包 直接安装，无需配置windows服务，安装的时候已经配好。 配置MongoDB">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-07-07T12:32:28.238Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mongodb安装配置卸载配置安全性使用java访问">
+<meta name="twitter:description" content="安装决定进行学习mongodb的时候是在菜鸟教程上面进行安装，真他妈的坑，教你安装直装版，还叫你进行配置，直接安装的版本配置文件、log文件存放路径、数据库存放路径早就意见给安了。 下载连接https://www.runoob.com/mongodb/mongodb-window-install.html 下载msi包 直接安装，无需配置windows服务，安装的时候已经配好。 配置MongoDB">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/zhbzdnb.github.io/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/07/07/mongodb安装配置卸载配置安全性使用java访问/">
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "5f89d94e"
+    });
+  daovoice('update');
+  </script>
+
+  <title>mongodb安装配置卸载配置安全性使用java访问 | 虾</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/zhbzdnb.github.io/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">虾</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">我能像你那么洒脱就好了</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/zhbzdnb.github.io/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/zhbzdnb.github.io/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/zhbzdnb.github.io/tags/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/zhbzdnb.github.io/categories/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/zhbzdnb.github.io/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/zhbzdnb.github.io/2019/07/07/mongodb安装配置卸载配置安全性使用java访问/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZHB">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/zhbzdnb.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="虾">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">mongodb安装配置卸载配置安全性使用java访问</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-07T17:21:20+08:00">
+                2019-07-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/zhbzdnb.github.io/categories/mongodb/" itemprop="url" rel="index">
+                    <span itemprop="name">mongodb</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>决定进行学习mongodb的时候是在菜鸟教程上面进行安装，真他妈的坑，教你安装直装版，还叫你进行配置，直接安装的版本配置文件、log文件存放路径、数据库存放路径早就意见给安了。</p>
+<p>下载连接<a href="https://www.runoob.com/mongodb/mongodb-window-install.html" target="_blank" rel="noopener">https://www.runoob.com/mongodb/mongodb-window-install.html</a></p>
+<p>下载msi包 直接安装，无需配置windows服务，安装的时候已经配好。</p>
+<h2 id="配置MongoDB安全性"><a href="#配置MongoDB安全性" class="headerlink" title="配置MongoDB安全性"></a>配置MongoDB安全性</h2><p>mongodb一个让我无语的地方，不会安装的时候要你配置数据库用户密码，安装成功后无需其他操作直接登入数据库，也就是说你不配置安全性，人家轻松给你登上数据库，毫无安全性.</p>
+<p>验证安装是否成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#进入安装的bin目录双击mongo.exe</span><br><span class="line">#进入admin管理员状态 注意你use不存在的用户不会报错</span><br><span class="line">use admin</span><br><span class="line">#查看所有角色</span><br><span class="line">show dbs</span><br></pre></td></tr></table></figure>
+<p>在配置安全性前，在admin角色下创建一个管理员角色</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">db.createUser(</span><br><span class="line">  &#123;</span><br><span class="line">    user: &quot;zhb&quot;,</span><br><span class="line">    pwd: &quot;zhb&quot;,</span><br><span class="line">    roles: [ &#123; role: &quot;userAdminAnyDatabase&quot;, db: &quot;admin&quot; &#125; ]</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>配置安全性，网上杂七杂八的很多，直装版自带了配置文件 在bin目录 mongod.cfg文件  修改配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#开启安全性验证</span><br><span class="line">security:</span><br><span class="line">    authorization: enabled</span><br></pre></td></tr></table></figure>
+<p>验证是否成功；重启mongodb，直装版在安装的时候已经把服务注册到了windows</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">net stop mongodb</span><br><span class="line">net start mongodb</span><br></pre></td></tr></table></figure>
+<p>打开Mongodb的shell  双击mongo，exe</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">use admin</span><br><span class="line">show dbs</span><br><span class="line">#我这边是无法输入，无效命令</span><br><span class="line">#安全性验证:</span><br><span class="line">db.auth(&quot;zhb&quot;,&quot;zhb&quot;)</span><br><span class="line">#正确显示角色</span><br><span class="line">配置成功</span><br></pre></td></tr></table></figure>
+<h2 id="创建读写用户"><a href="#创建读写用户" class="headerlink" title="创建读写用户"></a>创建读写用户</h2><h3 id="首先看看mongodb数据库角色以及权限"><a href="#首先看看mongodb数据库角色以及权限" class="headerlink" title="首先看看mongodb数据库角色以及权限"></a>首先看看mongodb数据库角色以及权限</h3><p><strong>内建的角色</strong><br>　　　　<strong>数据库用户角色</strong>：read、readWrite;<br>　　　　<strong>数据库管理角色</strong>：dbAdmin、dbOwner、userAdmin；<br>　　　　<strong>集群管理角色</strong>：clusterAdmin、clusterManager、clusterMonitor、hostManager；<br>　　　　<strong>备份恢复角色</strong>：backup、restore；<br>　　　　<strong>所有数据库角色</strong>：readAnyDatabase、readWriteAnyDatabase、userAdminAnyDatabase、dbAdminAnyDatabase<br>　　　　<strong>超级用户角色</strong>：root // 这里还有几个角色间接或直接提供了系统超级用户的访问（dbOwner 、userAdmin、userAdminAnyDatabase）<br>　　　　<strong>内部角色：__system</strong> </p>
+<p><strong>角色说明：</strong><br>　　　　<strong>Read</strong>：允许用户读取指定数据库<br>　　　　<strong>readWrite</strong>：允许用户读写指定数据库<br>　　　　<strong>dbAdmin</strong>：允许用户在指定数据库中执行管理函数，如索引创建、删除，查看统计或访system.profile<br>　　　　<strong>userAdmin</strong>：允许用户向system.users集合写入，可以找指定数据库里创建、删除和管理用户<br>　　　　<strong>clusterAdmin</strong>：只在admin数据库中可用，赋予用户所有分片和复制集相关函数的管理权限。<br>　　　　<strong>readAnyDatabase</strong>：只在admin数据库中可用，赋予用户所有数据库的读权限<br>　　　　<strong>readWriteAnyDatabase</strong>：只在admin数据库中可用，赋予用户所有数据库的读写权限<br>　　　　<strong>userAdminAnyDatabase</strong>：只在admin数据库中可用，赋予用户所有数据库的userAdmin权限<br>　　　　<strong>dbAdminAnyDatabase</strong>：只在admin数据库中可用，赋予用户所有数据库的dbAdmin权限。<br>　　　　<strong>root</strong>：只在admin数据库中可用。超级账号，超级权限</p>
+<h3 id="创建读写用户-1"><a href="#创建读写用户-1" class="headerlink" title="创建读写用户"></a>创建读写用户</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&gt;use admin</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&gt;db.auth(&quot;zhb&quot;,&quot;zhb&quot;)</span><br><span class="line"></span><br><span class="line">#先进入zhb_readwrite角色 因为在admin角色下无法创建zhb_readwrite角色的数据库</span><br><span class="line">&gt;use zhb_readwrite </span><br><span class="line"></span><br><span class="line">&gt;db.createUser(</span><br><span class="line">... ... ...  &#123;</span><br><span class="line">... ... ...     user: &quot;readwrite&quot;,</span><br><span class="line">... ... ...    pwd: &quot;readwrite&quot;,</span><br><span class="line">... ... ...     roles: [</span><br><span class="line">... ... ...       &#123; role: &quot;readWrite&quot;, db: &quot;zhb_readwrite&quot; &#125;,</span><br><span class="line">... ... ...    ]</span><br><span class="line">... ... ...  &#125;</span><br><span class="line">... ... ...  )</span><br><span class="line">&gt;use zhb_readwrite</span><br></pre></td></tr></table></figure>
+<p>关闭mongo.exe,再次打开</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;use zhb_readwrite</span><br><span class="line">&gt;db.auth(&quot;readwrite&quot;,&quot;readwrite&quot;)</span><br><span class="line">#新增</span><br><span class="line">&gt;db.test.insert(&#123;name:&quot;kite&quot;&#125;)</span><br><span class="line">#查看</span><br><span class="line">&gt;db.test.find()</span><br></pre></td></tr></table></figure>
+<h2 id="MongoDB卸载"><a href="#MongoDB卸载" class="headerlink" title="MongoDB卸载"></a>MongoDB卸载</h2><p>直装版再次运行安装程序即可。</p>
+<h2 id="使用java代码连接mongodb数据库"><a href="#使用java代码连接mongodb数据库" class="headerlink" title="使用java代码连接mongodb数据库"></a>使用java代码连接mongodb数据库</h2><h3 id="先导入jar包"><a href="#先导入jar包" class="headerlink" title="先导入jar包"></a>先导入jar包</h3><p>访问<a href="https://mongodb.github.io/mongo-java-driver/" target="_blank" rel="noopener">https://mongodb.github.io/mongo-java-driver/</a> 获得下载连接以及maven支持</p>
+<h3 id="无密码直接连接"><a href="#无密码直接连接" class="headerlink" title="无密码直接连接"></a>无密码直接连接</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void MongoDBserver()</span><br><span class="line">&#123;</span><br><span class="line">    try&#123;</span><br><span class="line">        // 连接到 mongodb 服务</span><br><span class="line">        MongoClient mongoClient = new MongoClient( &quot;localhost&quot; , 27017 );</span><br><span class="line"></span><br><span class="line">        // 连接到数据库</span><br><span class="line">        MongoDatabase mongoDatabase = mongoClient.getDatabase(&quot;mongodbFist&quot;);</span><br><span class="line">        MongoCollection&lt;Document&gt; collection = mongoDatabase.getCollection(&quot;test&quot;);</span><br><span class="line">        System.out.println(&quot;连接成功&quot;);</span><br><span class="line">    &#125;catch(Exception e)&#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="密码连接"><a href="#密码连接" class="headerlink" title="密码连接"></a>密码连接</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">//验证mongodb登录链接</span><br><span class="line">   @Test</span><br><span class="line">   public  void MongoDBLogin()</span><br><span class="line">   &#123;</span><br><span class="line">       try &#123;</span><br><span class="line">           //连接到MongoDB服务 如果是远程连接可以替换“localhost”为服务器所在IP地址</span><br><span class="line">           //ServerAddress()两个参数分别为 服务器地址 和 端口</span><br><span class="line">           ServerAddress serverAddress = new ServerAddress(&quot;localhost&quot;,27017);</span><br><span class="line">           List&lt;ServerAddress&gt; addrs = new ArrayList&lt;ServerAddress&gt;();</span><br><span class="line">           addrs.add(serverAddress);</span><br><span class="line"></span><br><span class="line">           //MongoCredential.createScramSha1Credential()三个参数分别为 用户名 数据库名称 密码</span><br><span class="line">           MongoCredential credential = MongoCredential.createScramSha1Credential(&quot;readwrite&quot;, &quot;zhb_writeread&quot;, &quot;readwrite&quot;.toCharArray());</span><br><span class="line"></span><br><span class="line">           List&lt;MongoCredential&gt; credentials = new ArrayList&lt;MongoCredential&gt;();</span><br><span class="line">           credentials.add(credential);</span><br><span class="line"></span><br><span class="line">           //通过连接认证获取MongoDB连接</span><br><span class="line">           MongoClient mongoClient = new MongoClient(addrs,credentials);</span><br><span class="line"></span><br><span class="line">           //连接到数据库</span><br><span class="line">           MongoDatabase mongoDatabase = mongoClient.getDatabase(&quot;mongodbFist&quot;);</span><br><span class="line">           System.out.println(&quot;Connect to database successfully&quot;);</span><br><span class="line">       &#125; catch (Exception e) &#123;</span><br><span class="line">           System.err.println( e.getClass().getName() + &quot;: &quot; + e.getMessage() );</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="进行CRUD操作"><a href="#进行CRUD操作" class="headerlink" title="进行CRUD操作"></a>进行CRUD操作</h2><h3 id="封装为工具类"><a href="#封装为工具类" class="headerlink" title="封装为工具类"></a>封装为工具类</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">public class MongoDBUtil &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    //需要密码认证方式连接</span><br><span class="line">    public static MongoDatabase getConnect()&#123;</span><br><span class="line"></span><br><span class="line">            //连接到MongoDB服务 如果是远程连接可以替换“localhost”为服务器所在IP地址</span><br><span class="line">            //ServerAddress()两个参数分别为 服务器地址 和 端口</span><br><span class="line">            ServerAddress serverAddress = new ServerAddress(&quot;localhost&quot;,27017);</span><br><span class="line">            List&lt;ServerAddress&gt; addrs = new ArrayList&lt;ServerAddress&gt;();</span><br><span class="line">            addrs.add(serverAddress);</span><br><span class="line"></span><br><span class="line">            //MongoCredential.createScramSha1Credential()三个参数分别为 用户名 数据库名称 密码</span><br><span class="line">            MongoCredential credential = MongoCredential.createScramSha1Credential(&quot;readwrite&quot;, &quot;zhb_fistTest&quot;, &quot;readwrite&quot;.toCharArray());</span><br><span class="line"></span><br><span class="line">            List&lt;MongoCredential&gt; credentials = new ArrayList&lt;MongoCredential&gt;();</span><br><span class="line">            credentials.add(credential);</span><br><span class="line"></span><br><span class="line">            //通过连接认证获取MongoDB连接</span><br><span class="line">            MongoClient mongoClient = new MongoClient(addrs,credentials);</span><br><span class="line"></span><br><span class="line">            //连接到数据库</span><br><span class="line">            MongoDatabase mongoDatabase = mongoClient.getDatabase(&quot;zhb_fistTest&quot;);</span><br><span class="line">            System.out.println(&quot;Connect to database successfully&quot;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">           //返回连接数据库对象</span><br><span class="line">           return mongoDatabase;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意这个数据库你没有，但你指定并进行更新操作后，mongodb会自动创建</p>
+<p><strong>mongoDB中的数据都是通过文档（对应于关系型数据库表中的一行）保存的，而文档又保存在集合（对应于关系型数据库的表）中。</strong></p>
+<h3 id="创建集合（即关系型数据库的表）"><a href="#创建集合（即关系型数据库的表）" class="headerlink" title="创建集合（即关系型数据库的表）"></a>创建集合（即关系型数据库的表）</h3><h3 id="插入操作"><a href="#插入操作" class="headerlink" title="插入操作"></a>插入操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//插入一个文档</span><br><span class="line">@Test</span><br><span class="line">public void insertOneTest()&#123;</span><br><span class="line">    //获取数据库连接对象</span><br><span class="line">    MongoDatabase mongoDatabase = MongoDBUtil.getConnect();</span><br><span class="line">    //获取集合</span><br><span class="line">    MongoCollection&lt;Document&gt; collection = mongoDatabase.getCollection(&quot;user&quot;);</span><br><span class="line">    //要插入的数据</span><br><span class="line">    Document document = new Document(&quot;name&quot;,&quot;张三&quot;)</span><br><span class="line">                            .append(&quot;sex&quot;, &quot;男&quot;)</span><br><span class="line">                            .append(&quot;age&quot;, 18);</span><br><span class="line">    //插入一个文档</span><br><span class="line">    collection.insertOne(document);</span><br><span class="line"></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/vx.jpg" alt="ZHB 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/zfb.jpg" alt="ZHB 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/zhbzdnb.github.io/tags/mongodb/" rel="tag"># mongodb</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/zhbzdnb.github.io/2019/07/03/Nginx/" rel="next" title="Nginx">
+                <i class="fa fa-chevron-left"></i> Nginx
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MjEyNC8xODY3MQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">ZHB</p>
+              <p class="site-description motion-element" itemprop="description">生活不止，代码不停。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/zhbzdnb.github.io/archives/">
+              
+                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/zhbzdnb.github.io/categories/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/zhbzdnb.github.io/tags/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="http://wpa.qq.com/msgrd?v=3&uin=1987731442&site=qq&menu=yes" target="_blank" title="使用qq联系我">
+                      
+                        <i class="fa fa-fw fa-globe"></i>使用qq联系我</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://tieba.baidu.com/f?kw=%BD%E4%C9%AB&fr=ala0&tpl=5" title="戒色吧" target="_blank">戒色吧</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置MongoDB安全性"><span class="nav-number">2.</span> <span class="nav-text">配置MongoDB安全性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建读写用户"><span class="nav-number">3.</span> <span class="nav-text">创建读写用户</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#首先看看mongodb数据库角色以及权限"><span class="nav-number">3.1.</span> <span class="nav-text">首先看看mongodb数据库角色以及权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建读写用户-1"><span class="nav-number">3.2.</span> <span class="nav-text">创建读写用户</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MongoDB卸载"><span class="nav-number">4.</span> <span class="nav-text">MongoDB卸载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用java代码连接mongodb数据库"><span class="nav-number">5.</span> <span class="nav-text">使用java代码连接mongodb数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#先导入jar包"><span class="nav-number">5.1.</span> <span class="nav-text">先导入jar包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#无密码直接连接"><span class="nav-number">5.2.</span> <span class="nav-text">无密码直接连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#密码连接"><span class="nav-number">5.3.</span> <span class="nav-text">密码连接</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进行CRUD操作"><span class="nav-number">6.</span> <span class="nav-text">进行CRUD操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#封装为工具类"><span class="nav-number">6.1.</span> <span class="nav-text">封装为工具类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建集合（即关系型数据库的表）"><span class="nav-number">6.2.</span> <span class="nav-text">创建集合（即关系型数据库的表）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入操作"><span class="nav-number">6.3.</span> <span class="nav-text">插入操作</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=1350202699&auto=0&height=32"></iframe>
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        ﻿<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZHB</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+		<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/zhbzdnb.github.io/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/zhbzdnb.github.io/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/zhbzdnb.github.io/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/zhbzdnb.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/zhbzdnb.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/zhbzdnb.github.io/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/zhbzdnb.github.io/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/zhbzdnb.github.io/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/zhbzdnb.github.io/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/zhbzdnb.github.io/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/zhbzdnb.github.io/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/zhbzdnb.github.io/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/zhbzdnb.github.io/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
