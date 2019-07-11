@@ -1,0 +1,24 @@
+---
+title: JDBC，Mybatis，Hibernate各自优势及缺陷
+date: 2019-01-01 15:17:00
+tags: 
+- 持久层框架对比
+categories:
+- 框架
+---
+&ensp;&ensp;先列一下各个框架实现编程需要的步骤
+1. JDBC   
+- 使用jdbc编程需要连接数据库，注册驱动和数据库信息
+- 操作Connection，打开Statement对象
+- 通过Statement对象执行SQL，返回结果到ResultSet对象
+- 使用ResultSet读取数据，然后通过代码转化为具体的POJO对象
+- 关闭数据库相关的资源
+2. Hibernate   
+- Hibernate是建立在*若干POJO通过xml映射文件（或注解）提供的规则映射到数据库表*上的。
+- ps:在hibernate我们已经直接使用POJO进行操作了，已经不在是sql，而是使用HQL。HIbernate对JDBC的封装程度爆炸高。
+3. Mybatis   
+- 为了弥补Hibernate不足，Mybatis出现了，Hibernate如果说是全自动，那么Mybatis就是半自动的。因为**它需要手工匹配提供POJO，sql和映射关系，而全表映射的Hibernate只需要提供pojo和映射关系**即可。
+4. 优点、缺陷、使用场景  
+- 使用JDBC对于数据库create和read是最快的，缺陷就是代码工作量大，需要准确的关闭statemnet，connection、ResultSet对象，并且要对jdbc编程可能产生的对象进行捕获。得到结论一定要专注于数据库read和create性能使用JDBC没毛病！
+- 使用HIbernate我们已经不需要写SQL，只要使用HQL语言就可以了。提莫的使用Hibernate的Hibernatetempplate完全就是进行方法调用，看起来tmd hibernate是最六的，但是这玩意**不能优化SQL语句！！**，写稍微复杂一些的SQL语句就很麻烦！！Hibernate只适用于在场景不太复杂，要求性能不太苛刻的时候使用。
+- 如果你需要一个灵活的，可以动态生成映射关系的框架，那么Mybatis确实是一个最好的选择。它几乎可以替代jdbc，拥有动态列，动态表名，存储过程支持，同时提供了简易的缓存，日志，级联。但是它的缺陷是需要你提供映射规则和sql，所以开发工作量比hibernate要大些。

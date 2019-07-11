@@ -1,0 +1,16 @@
+---
+title: 1.02两场面试
+date: 2019-01-02 22:00:30
+tags: 面试
+categories: 面试
+---
+1.面试某大型公司
+大公司一般都是 填表，做题，这次没人管我随意百度那面试官tmd竟然给老子开会？？欸浪费老子时间。也填一下我不晓得的一个sql吧，由同学提供答案![aaaaaa](1-02两场面试/a.png)
+```
+select b.Id,b.Name,count(a.id) from departments b 
+inner join employee a on b.id=a.departmentID	
+group by b.Name
+Having count(a.id)>=10
+```
+2. 面试一小公司
+这个公司人就五个加上boss，在一起写一个web项目，那boss在那里自学java，我看到了。自我介绍后要我写个冒泡排序和个web跳转，他那tomcat都没配好，弄了我一些时间中间出现了bug。基本上我对这家公司也不抱什么期望，没得大佬，差个java全职去做，太累了呀。工资也是只愿意给8k，就这样吧，没获得什么经验。					
