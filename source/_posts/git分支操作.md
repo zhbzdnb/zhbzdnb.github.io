@@ -23,7 +23,7 @@ categories:
 
 `git checkout -b <分支名>`
 
-##### 提交到git仓库
+#### 提交到git仓库
 
 git commit -m '注释' --注释尽量简介明了
 
@@ -98,6 +98,28 @@ git push origin  分支名：关联库设置的分支名
 
 git clone -b 分支名 库地址
 
+#### 查看本地分支和远程分支的跟踪关系
+
+这个不指定跟踪关系 本地
+
+```
+git branch -vv
+```
+
 # git使用总结
 
 还是有太多不熟悉，太垃圾了，以云端编写hexo博客为问题，得到解决方案：将hexo博客推送至github分支，初始化git，将hexo博客分支推送至云端开发环境 ，，但是这个hexo也要init 前面关于[hexo迁移](https://zhbzdnb.github.io/zhbzdnb.github.io/2019/06/22/hexo%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/)的文章也说了全目录移过去是没用的，那么就是说，需要clone到云端之后，再另外一个文件夹执行hexo init， 靠这个云端没法去复制文件夹啊。蛋疼，云端编译hexo是告一段落了。但有这次深入对git命令的熟悉，对hexo博客的迁移也会变得更加简单。
+
+# 20190722更新
+
+现在习惯了hexo博客放分支下 用 `git push origin myblog:myblog` 将本地hexo博客分支推送到github的远程分支下，他喵的发现一个问题，我使用配置hexo new一个文章自动创建一个文件夹用于图片展示，提交到github上缺失了很多文件夹，经过排查得知git默认不会提交空的文件夹。
+
+在网上找到解决方法
+
+在每一个空文件夹下面创建一个.gitignore文件
+
+```
+find . -type d -empty -exec touch {}/.gitignore \;
+```
+
+参考https://blog.csdn.net/weixin_34387284/article/details/89700305
