@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "5f89d94e"
+    });
+  daovoice('update');
+  </script>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/zhbzdnb.github.io/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/zhbzdnb.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/zhbzdnb.github.io/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/zhbzdnb.github.io/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/zhbzdnb.github.io/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/zhbzdnb.github.io/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/zhbzdnb.github.io/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="netty,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="12 Byte字节java中byte类型被定义为二进制字节，一说到二进制，那么联想到二进制文件视频、图片等等、也就是j多用于对File进行是I/O操作的时候 Buffer缓冲区缓冲区(Buffer)就是在内存中预留指定大小的存储空间用来对输入/输出(I/O)的数据作临时存储，这部分预留的内存空间就叫做缓冲区： 这个其实是很好理解的日常查看视频、经常出现请等待缓存，视频就是一堆图片组成一帧一张图片，">
+<meta name="keywords" content="netty">
+<meta property="og:type" content="article">
+<meta property="og:title" content="netty的ByteBuf和java的ByteBuffer">
+<meta property="og:url" content="http://yoursite.com/2019/07/22/netty的ByteBuf和java的ByteBuffer/index.html">
+<meta property="og:site_name" content="虾">
+<meta property="og:description" content="12 Byte字节java中byte类型被定义为二进制字节，一说到二进制，那么联想到二进制文件视频、图片等等、也就是j多用于对File进行是I/O操作的时候 Buffer缓冲区缓冲区(Buffer)就是在内存中预留指定大小的存储空间用来对输入/输出(I/O)的数据作临时存储，这部分预留的内存空间就叫做缓冲区： 这个其实是很好理解的日常查看视频、经常出现请等待缓存，视频就是一堆图片组成一帧一张图片，">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-07-25T15:38:22.658Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="netty的ByteBuf和java的ByteBuffer">
+<meta name="twitter:description" content="12 Byte字节java中byte类型被定义为二进制字节，一说到二进制，那么联想到二进制文件视频、图片等等、也就是j多用于对File进行是I/O操作的时候 Buffer缓冲区缓冲区(Buffer)就是在内存中预留指定大小的存储空间用来对输入/输出(I/O)的数据作临时存储，这部分预留的内存空间就叫做缓冲区： 这个其实是很好理解的日常查看视频、经常出现请等待缓存，视频就是一堆图片组成一帧一张图片，">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/zhbzdnb.github.io/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/07/22/netty的ByteBuf和java的ByteBuffer/">
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "5f89d94e"
+    });
+  daovoice('update');
+  </script>
+
+  <title>netty的ByteBuf和java的ByteBuffer | 虾</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/zhbzdnb.github.io/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">虾</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">我能像你那么洒脱就好了</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/zhbzdnb.github.io/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/zhbzdnb.github.io/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/zhbzdnb.github.io/tags/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/zhbzdnb.github.io/categories/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/zhbzdnb.github.io/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/zhbzdnb.github.io/2019/07/22/netty的ByteBuf和java的ByteBuffer/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZHB">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/zhbzdnb.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="虾">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">netty的ByteBuf和java的ByteBuffer</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-22T02:08:44+08:00">
+                2019-07-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/zhbzdnb.github.io/categories/netty/" itemprop="url" rel="index">
+                    <span itemprop="name">netty</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="Byte字节"><a href="#Byte字节" class="headerlink" title="Byte字节"></a>Byte字节</h2><p>java中byte类型被定义为二进制字节，一说到二进制，那么联想到二进制文件视频、图片等等、也就是j多用于对File进行是I/O操作的时候</p>
+<h2 id="Buffer缓冲区"><a href="#Buffer缓冲区" class="headerlink" title="Buffer缓冲区"></a>Buffer缓冲区</h2><p><strong>缓冲区(Buffer)就是在内存中预留指定大小的存储空间用来对输入/输出(I/O)的数据作临时存储，这部分预留的内存空间就叫做缓冲区：</strong></p>
+<p>这个其实是很好理解的日常查看视频、经常出现请等待缓存，视频就是一堆图片组成一帧一张图片，大部分视频都通过编码压缩，那么加载的时候不可能一帧加载完了就给你展示.涉及<strong>视频编码知识</strong>;视频一帧一帧加载成了一个片段才给你播出.这个就是缓冲区;</p>
+<p>java中为什么要缓冲区？很简单，你一个new出来的对象能复用就多复用；尽量减少声明新变量；不仅仅是代码美观干净，也是为了减少内存损耗； 同样的缓冲区也是如此；即<strong>重用</strong>、<strong>减少内存损耗</strong></p>
+<h2 id="Nio的ByteBuffer"><a href="#Nio的ByteBuffer" class="headerlink" title="Nio的ByteBuffer"></a>Nio的ByteBuffer</h2><p>基本方法使用这个demo过一遍就ok、jdk 1.4以上 即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">import io.netty.buffer.ByteBuf;</span><br><span class="line">import io.netty.buffer.CompositeByteBuf;</span><br><span class="line">import io.netty.buffer.Unpooled;</span><br><span class="line">import org.junit.Test;</span><br><span class="line"></span><br><span class="line">import java.nio.ByteBuffer;</span><br><span class="line"></span><br><span class="line">public class NettyDemo &#123;</span><br><span class="line">    @Test</span><br><span class="line">    public void TestByteBuf()</span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">        ByteBuffer byteBuffer = ByteBuffer.allocate(88);</span><br><span class="line">        // 一种新的动态缓冲区被创建。在内部，实际缓冲区是被“懒”创建，从而避免潜在的浪费内存空间。</span><br><span class="line">        ByteBuf b = Unpooled.buffer(4);</span><br><span class="line">        System.out.println(b.capacity());</span><br><span class="line">        // 当第一个执行写尝试，内部指定初始容量 4 的缓冲区被创建</span><br><span class="line">        b.writeByte(&apos;1&apos;);</span><br><span class="line"></span><br><span class="line">        b.writeByte(&apos;2&apos;);</span><br><span class="line">        b.writeByte(&apos;3&apos;);</span><br><span class="line">        b.writeByte(&apos;4&apos;);</span><br><span class="line">        System.out.println(b.capacity());</span><br><span class="line">        // 当写入的字节数超过初始容量 4 时，</span><br><span class="line">        //内部缓冲区自动分配具有较大的容量</span><br><span class="line">          b.writeByte(&apos;5&apos;);</span><br><span class="line">        System.out.println(b.capacity());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="缺陷"><a href="#缺陷" class="headerlink" title="缺陷"></a>缺陷</h3><p>第一点</p>
+<p>ByteBuffer的长度<strong>是固定的</strong>，一旦分配完成就不能进行扩容和收缩，当需要操作的对象大于Buffer的容量时，会发生异常；</p>
+<p>第二点</p>
+<p>在进行读写状态切换时，需要调用flip()或rewind()方法改变指针position的位置，稍有不慎，就不能完成任务；</p>
+<h2 id="Netty的ByteBuf"><a href="#Netty的ByteBuf" class="headerlink" title="Netty的ByteBuf"></a>Netty的ByteBuf</h2><p>netty为了修复上面两个蛋痛的问题，重写了ByteBuffer、即ByteBuf；</p>
+<h4 id="自动扩容"><a href="#自动扩容" class="headerlink" title="自动扩容"></a>自动扩容</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void TestByteBuf()</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    ByteBuffer byteBuffer = ByteBuffer.allocate(88);</span><br><span class="line">    // 一种新的动态缓冲区被创建。在内部，实际缓冲区是被“懒”创建，从而避免潜在的浪费内存空间。</span><br><span class="line">    ByteBuf b = Unpooled.buffer(4);</span><br><span class="line">    System.out.println(b.capacity());</span><br><span class="line">    // 当第一个执行写尝试，内部指定初始容量 4 的缓冲区被创建</span><br><span class="line">    b.writeByte(&apos;1&apos;);</span><br><span class="line"></span><br><span class="line">    b.writeByte(&apos;2&apos;);</span><br><span class="line">    b.writeByte(&apos;3&apos;);</span><br><span class="line">    b.writeByte(&apos;4&apos;);</span><br><span class="line">    System.out.println(b.capacity());</span><br><span class="line">    // 当写入的字节数超过初始容量 4 时，</span><br><span class="line">    //内部缓冲区自动分配具有较大的容量</span><br><span class="line">      b.writeByte(&apos;5&apos;);</span><br><span class="line">    System.out.println(b.capacity());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：</p>
+<ol>
+<li><p>当申请的新空间大于阀值时，采用每次步进4MB的方式进行扩张内存，而不是倍增，因为这会造成内存膨胀和浪费 </p>
+</li>
+<li><p>而但申请的新空间小于阀值时，则以64为基数进行倍增而不是步进，因为当内存比较小的时候，倍增是可以接受的（64 -&gt; 128 和 10Mb -&gt; 20Mb相比链接！</p>
+<h4 id="位置指针"><a href="#位置指针" class="headerlink" title="位置指针"></a>位置指针</h4></li>
+</ol>
+<p>ByteBuf通过两个位置指针来协助缓冲区的读写操作，读操作使用readerIndex，写操作使用writerIndex。<br>readerIndex和writerIndex的取值一开始都是0，随着数据的写入writerIndex会增加，读取数据会使readerIndex增加，但是它不会超过writerIndex。在读取之后，0～readerIndex的就被视为discard的，调用discardReadBytes方法，可以释放这部分空间，它的作用类似ByteBuffer的compact方法。readerIndex和writerIndex之间的数据是可读取的，等价于ByteBuffer position和limit之间的数据。writerIndex和capacity之间的空间是可写的，等价于ByteBuffer limit和capacity之间的可用空间。<br><strong>由于写操作不修改readerIndex指针，读操作不修改writerIndex指针，因此读写之间不再需要调整位置指针</strong>，这极大地简化了缓冲区的读写操作，避免了由于遗漏或者不熟悉flip()操作导致的功能异常。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void TestByteBufReadWriteIndex()</span><br><span class="line">&#123;</span><br><span class="line">    ByteBuf b = Unpooled.buffer();</span><br><span class="line">    System.out.println(&quot;读:&quot;+b.readerIndex());</span><br><span class="line">    System.out.println(&quot;写:&quot;+b.writerIndex());</span><br><span class="line">    b.writeByte(&apos;1&apos;);</span><br><span class="line">    b.writeByte(&apos;2&apos;);</span><br><span class="line">    b.writeByte(&apos;3&apos;);</span><br><span class="line">    b.writeByte(&apos;4&apos;);</span><br><span class="line">    b.writeByte(&apos;5&apos;);</span><br><span class="line">    System.out.println(&quot;读:&quot;+b.readerIndex());</span><br><span class="line">    System.out.println(&quot;写:&quot;+b.writerIndex());</span><br><span class="line"></span><br><span class="line">    b.readBytes(5);</span><br><span class="line">    System.out.println(&quot;读:&quot;+b.readerIndex());</span><br><span class="line">    System.out.println(&quot;写:&quot;+b.writerIndex());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="复合缓冲"><a href="#复合缓冲" class="headerlink" title="复合缓冲"></a>复合缓冲</h4><p>最好使用我的这个netty版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;io.netty&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;netty-all&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;4.1.30.Final&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<p>测试版本过低这段代码报错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">       @Test</span><br><span class="line">    public void TestByteBuffhhc()</span><br><span class="line">    &#123;</span><br><span class="line">        //组合缓冲区</span><br><span class="line">        CompositeByteBuf compBuf = Unpooled.compositeBuffer();</span><br><span class="line">//堆缓冲区</span><br><span class="line">        ByteBuf heapBuf = Unpooled.buffer(8);</span><br><span class="line">//直接缓冲区</span><br><span class="line">        ByteBuf directBuf = Unpooled.directBuffer(16);</span><br><span class="line">//添加ByteBuf到CompositeByteBuf</span><br><span class="line">        compBuf.addComponents(heapBuf, directBuf);</span><br><span class="line">//删除第一个ByteBuf</span><br><span class="line">        compBuf.removeComponent(0);</span><br><span class="line">        Iterator&lt;ByteBuf&gt; iter = compBuf.iterator();</span><br><span class="line">        while(iter.hasNext())&#123;</span><br><span class="line">            System.out.println(iter.next().toString());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">//使用数组访问数据</span><br><span class="line">        if(!compBuf.hasArray())&#123;</span><br><span class="line">            int len = compBuf.readableBytes();</span><br><span class="line">            byte[] arr = new byte[len];</span><br><span class="line">            compBuf.getBytes(0, arr);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>参考：</p>
+<p><a href="https://waylau.gitbooks.io/netty-4-user-guide/Architectural Overview/Rich Buffer Data Structure.html" target="_blank" rel="noopener">https://waylau.gitbooks.io/netty-4-user-guide/Architectural%20Overview/Rich%20Buffer%20Data%20Structure.html</a></p>
+<p><a href="https://blog.csdn.net/xialong_927/article/details/81044759" target="_blank" rel="noopener">https://blog.csdn.net/xialong_927/article/details/81044759</a></p>
+<p><a href="https://blog.csdn.net/u010853261/article/details/53690780/" target="_blank" rel="noopener">https://blog.csdn.net/u010853261/article/details/53690780/</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/vx.jpg" alt="ZHB 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/zfb.jpg" alt="ZHB 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/zhbzdnb.github.io/tags/netty/" rel="tag"># netty</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/zhbzdnb.github.io/2019/07/21/解压缩工具类/" rel="next" title="解压缩工具类">
+                <i class="fa fa-chevron-left"></i> 解压缩工具类
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MjEyNC8xODY3MQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">ZHB</p>
+              <p class="site-description motion-element" itemprop="description">生活不止，代码不停。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/zhbzdnb.github.io/archives/">
+              
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/zhbzdnb.github.io/categories/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/zhbzdnb.github.io/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="http://wpa.qq.com/msgrd?v=3&uin=1987731442&site=qq&menu=yes" target="_blank" title="使用qq联系我">
+                      
+                        <i class="fa fa-fw fa-globe"></i>使用qq联系我</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://tieba.baidu.com/f?kw=%BD%E4%C9%AB&fr=ala0&tpl=5" title="戒色吧" target="_blank">戒色吧</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Byte字节"><span class="nav-number">1.</span> <span class="nav-text">Byte字节</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Buffer缓冲区"><span class="nav-number">2.</span> <span class="nav-text">Buffer缓冲区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nio的ByteBuffer"><span class="nav-number">3.</span> <span class="nav-text">Nio的ByteBuffer</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#缺陷"><span class="nav-number">3.1.</span> <span class="nav-text">缺陷</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Netty的ByteBuf"><span class="nav-number">4.</span> <span class="nav-text">Netty的ByteBuf</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#自动扩容"><span class="nav-number">4.0.1.</span> <span class="nav-text">自动扩容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#位置指针"><span class="nav-number">4.0.2.</span> <span class="nav-text">位置指针</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#复合缓冲"><span class="nav-number">4.0.3.</span> <span class="nav-text">复合缓冲</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=1350202699&auto=0&height=32"></iframe>
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        ﻿<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZHB</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+		<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/zhbzdnb.github.io/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/zhbzdnb.github.io/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/zhbzdnb.github.io/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/zhbzdnb.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/zhbzdnb.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/zhbzdnb.github.io/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/zhbzdnb.github.io/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/zhbzdnb.github.io/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/zhbzdnb.github.io/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/zhbzdnb.github.io/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/zhbzdnb.github.io/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/zhbzdnb.github.io/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/zhbzdnb.github.io/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
