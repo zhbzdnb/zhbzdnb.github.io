@@ -95,15 +95,15 @@
 <meta property="og:site_name" content="虾">
 <meta property="og:description" content="前言   上班的时候发现项目一个需要查询地方点击后会卡很久，点几次服务器的cup内存就涨满卡死了。经排查是sql语句的原因. 未优化查询总时长 数据库语句 12345678910111213141516    ##查数据    select t_client.mark,t_client.name,sum(countPeople) countPeople ,t_client.ip ip,t_coun">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/zhbzdnb.github.io/.com//1.png">
-<meta property="og:image" content="http://yoursite.com/zhbzdnb.github.io/.com//2.png">
-<meta property="og:image" content="http://yoursite.com/zhbzdnb.github.io/.com//3.png">
-<meta property="og:image" content="http://yoursite.com/zhbzdnb.github.io/.com//4.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/02/数据库查询语句优化1/数据库查询语句优化1/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/02/数据库查询语句优化1/数据库查询语句优化1/2.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/02/数据库查询语句优化1/数据库查询语句优化1/3.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/02/数据库查询语句优化1/数据库查询语句优化1/4.png">
 <meta property="og:updated_time" content="2019-06-02T09:30:40.791Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库查询语句优化1">
 <meta name="twitter:description" content="前言   上班的时候发现项目一个需要查询地方点击后会卡很久，点几次服务器的cup内存就涨满卡死了。经排查是sql语句的原因. 未优化查询总时长 数据库语句 12345678910111213141516    ##查数据    select t_client.mark,t_client.name,sum(countPeople) countPeople ,t_client.ip ip,t_coun">
-<meta name="twitter:image" content="http://yoursite.com/zhbzdnb.github.io/.com//1.png">
+<meta name="twitter:image" content="http://yoursite.com/2019/06/02/数据库查询语句优化1/数据库查询语句优化1/1.png">
 
 
 
@@ -374,7 +374,7 @@
 
       
         <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>   上班的时候发现项目一个需要查询地方点击后会卡很久，点几次服务器的cup内存就涨满卡死了。经排查是sql语句的原因.</p>
-<h3 id="未优化查询总时长"><a href="#未优化查询总时长" class="headerlink" title="未优化查询总时长"></a>未优化查询总时长</h3><p><img src="/zhbzdnb.github.io/.com//1.png" alt="one"></p>
+<h3 id="未优化查询总时长"><a href="#未优化查询总时长" class="headerlink" title="未优化查询总时长"></a>未优化查询总时长</h3><p><img src="数据库查询语句优化1\1.png" alt="one"></p>
 <p>数据库语句</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">    ##查数据    </span><br><span class="line">select t_client.mark,t_client.name,sum(countPeople) countPeople ,t_client.ip ip,t_count_people.countPeopleDetails</span><br><span class="line">	    from t_count_people,t_client</span><br><span class="line">		where t_count_people.mark= t_client.mark and LENGTH(trim(t_count_people.mark))&gt;1 </span><br><span class="line">		and LENGTH(trim(t_client.name))&gt;=1 and t_client.id in (select cid from t_client_group_relation where uid=#uid#) and</span><br><span class="line">		countDate &lt;=#etime#  and countDate &gt;=#btime# group by t_count_people.mark</span><br><span class="line">		limit #startid#,#pagetype#</span><br><span class="line">		</span><br><span class="line">  ##统计数据总数</span><br><span class="line">     SELECT count(*) from ( </span><br><span class="line">        select sum(countPeople) countPeople </span><br><span class="line">	    from t_count_people,t_client</span><br><span class="line">		where t_count_people.mark= t_client.mark and LENGTH(trim(t_count_people.mark))&gt;1 </span><br><span class="line">		and LENGTH(trim(t_client.name))&gt;=1 and t_client.id in (select cid from t_client_group_relation where uid=#uid#) and</span><br><span class="line">		countDate &lt;=#etime#  and countDate &gt;=#btime# group by t_count_people.mark</span><br><span class="line">	   ) temp</span><br></pre></td></tr></table></figure>
 <p>数据库表 t_count_people  人数统计表  10w条 数据</p>
@@ -382,7 +382,7 @@
 <p>t_result结果表 t_client 终端表</p>
 <p>百度疯狂查资料。。 优化数据库查询合理使用索引，</p>
 <p>下面是我索引建立失误的查询时间</p>
-<p><img src="/zhbzdnb.github.io/.com//2.png" alt="two"></p>
+<p><img src="数据库查询语句优化1\2.png" alt="two"></p>
 <p><strong>索引应当建立在频繁被作为查询条件的字段</strong>,这里说的是普通索引，唯一索引、主键索引我就不提了，</p>
 <p>改正后发现也就提升了2秒左右的速度。。这还是毫无卵用啊。。。</p>
 <p>我不得已对数据库 where进行拆分实验(直接select不带任何where  不超过3秒)</p>
@@ -390,14 +390,14 @@
 <p>and t_client.id in (select cid from t_client_group_relation where uid=#uid#)</p>
 <p>查询里的in！！！</p>
 <p>将其改为 左外连接  left join 后</p>
-<p><img src="/zhbzdnb.github.io/.com//3.png" alt="three"></p>
+<p><img src="数据库查询语句优化1\3.png" alt="three"></p>
 <p>我***！！！</p>
 <p>继续进行优化 这样还是不满足需求</p>
 <p>1 对经常进行查询的 t_count_people.mark建立普通索引</p>
 <p>2 <code>and countDate &lt;=#etime#  and countDate &gt;=#btime#</code></p>
 <p>将此条指定时间的条件改为</p>
 <p><code>and countDate BETWEEN #btime# and #etime#</code></p>
-<p>最终 <img src="/zhbzdnb.github.io/.com//4.png" alt></p>
+<p>最终 <img src="数据库查询语句优化1\4.png" alt></p>
 <p>题外话：</p>
 <p>where里慎用 in</p>
 <p>查询慎用group by 还有联合查询..</p>
