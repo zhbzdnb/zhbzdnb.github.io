@@ -95,12 +95,12 @@
 <meta property="og:site_name" content="虾">
 <meta property="og:description" content="以下所有都是从某大佬翻译的netty开发文档借鉴过来的https://waylau.gitbooks.io/netty-4-user-guide 写个抛弃服务器123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2019/07/28/pvcdo87mb.bkt.clouddn.com/netty从零搭建一个网络通讯服务1">
-<meta property="og:updated_time" content="2019-07-28T11:48:01.162Z">
+<meta property="og:image" content="https://s2.ax1x.com/2019/07/29/e8l5Wj.md.png">
+<meta property="og:updated_time" content="2019-07-29T12:18:46.760Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="netty从零搭建一个网络通讯服务">
 <meta name="twitter:description" content="以下所有都是从某大佬翻译的netty开发文档借鉴过来的https://waylau.gitbooks.io/netty-4-user-guide 写个抛弃服务器123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646">
-<meta name="twitter:image" content="http://yoursite.com/2019/07/28/pvcdo87mb.bkt.clouddn.com/netty从零搭建一个网络通讯服务1">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/07/29/e8l5Wj.md.png">
 
 
 
@@ -376,7 +376,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">import io.netty.buffer.ByteBuf;</span><br><span class="line"></span><br><span class="line">import io.netty.channel.ChannelHandlerContext;</span><br><span class="line">import io.netty.channel.ChannelInboundHandlerAdapter;</span><br><span class="line"></span><br><span class="line">import java.text.SimpleDateFormat;</span><br><span class="line">import java.util.Date;</span><br><span class="line"></span><br><span class="line">public class DiscardServerHandler extends ChannelInboundHandlerAdapter &#123;</span><br><span class="line">    // DiscardServerHandler 继承自 ChannelInboundHandlerAdapter，这个类实现了 ChannelInboundHandler接口，ChannelInboundHandler</span><br><span class="line">    // 提供了许多事件处理的接口方法，然后你可以覆盖这些方法。现在仅仅只需要继承 ChannelInboundHandlerAdapter 类而不是你自己去实现接口方法。</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void channelRead(ChannelHandlerContext ctx, Object msg) &#123;</span><br><span class="line">        //这里我们覆盖了 chanelRead() 事件处理方法。每当从客户端收到新的数据时，这个方法会在收到消息时被调用，这个例子中，收到的消息的类型是 ByteBuf</span><br><span class="line">        // 默默地丢弃收到的数据</span><br><span class="line">        //为了测试的可见性打印一个时间</span><br><span class="line">        String dateString=new SimpleDateFormat(&quot;YYYY-MM-dd HH-mm-ss&quot;).format(new Date());</span><br><span class="line">        System.out.println(dateString+&quot;接收了&quot;);</span><br><span class="line">        ((ByteBuf) msg).release(); // (3)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) &#123;</span><br><span class="line">        // 当出现异常就关闭连接</span><br><span class="line">        cause.printStackTrace();</span><br><span class="line">        ctx.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>启动windows的telnet  localhost 8080</p>
 <p>查看执行结果</p>
-<p><img src="../pvcdo87mb.bkt.clouddn.com/netty从零搭建一个网络通讯服务1" alt></p>
+<p><img src="https://s2.ax1x.com/2019/07/29/e8l5Wj.md.png" alt></p>
 <hr>
 <p>编写博客中途遇到问题，持续更新。</p>
 
