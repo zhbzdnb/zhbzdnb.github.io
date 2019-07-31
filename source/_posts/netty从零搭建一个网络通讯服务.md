@@ -126,4 +126,85 @@ public class DiscardServerHandler extends ChannelInboundHandlerAdapter {
 
 ------
 
-编写博客中途遇到问题，持续更新。
+
+
+## 查看客户端发送过来的数据
+
+将DiscardServerHandler的channelRead()方法改写一下
+
+```
+@Override
+public void channelRead(ChannelHandlerContext ctx, Object msg) {
+      ByteBuf in = (ByteBuf) msg;
+            try {
+                while (in.isReadable()) { // (1)
+                    String dateString=new SimpleDateFormat("YYYY-MM-dd HH:mm:ss").format(new Date());
+                    System.out.println(dateString+"接收了");
+                    System.out.print((char) in.readByte());
+                    System.out.flush();
+                }
+            } finally {
+                ReferenceCountUtil.release(msg); 
+            }
+}
+```
+
+将上面循环简化
+
+```
+      @Override
+        public void channelRead(ChannelHandlerContext ctx, Object msg) {
+            //这里我们覆盖了 chanelRead() 事件处理方法。每当从客户端收到新的数据时，这个方法会在收到消息时被调用，这个例子中，收到的消息的类型是 ByteBuf
+            // 默默地丢弃收到的数据
+            String dateString=new SimpleDateFormat("YYYY-MM-dd HH:mm:ss").format(new Date());
+            System.out.println(dateString+"接收了");
+            ByteBuf in = (ByteBuf) msg;
+            System.out.println(in.toString(io.netty.util.CharsetUtil.US_ASCII));
+            ((ByteBuf) msg).release(); 
+        }
+```
+
+打开telnet ip port  使用ctrl +] 进入命令模式
+
+send  test 发送字符串
+
+![1564590360324](netty从零搭建一个网络通讯服务\1564590360324.png)
+
+服务端打印
+
+![1564590398058](netty从零搭建一个网络通讯服务\1564590398058.png)
+
+## 写一个应答服务器
+
+已知消息都是在DiscardServerHandler的channelRead()方法处理的应答也是再次 将方法改写 使用ChannelHandlerContext对象的方法进行发送
+
+```
+ @Override
+    public void channelRead(ChannelHandlerContext ctx, Object msg) {
+        ctx.write(msg); // (1)
+        ctx.flush(); // (2)
+    }
+1. ChannelHandlerContext 对象提供了许多操作，使你能够触发各种各样的 I/O 事件和操作。这里我们调用了 write(Object) 方法来逐字地把接受到的消息写入。请注意不同于 DISCARD 的例子我们并没有释放接受到的消息，这是因为当写入的时候 Netty 已经帮我们释放了。
+2.ctx.write(Object) 方法不会使消息写入到通道上，他被缓冲在了内部，你需要调用 ctx.flush() 方法来把缓冲区中数据强行输出。或者你可以用更简洁的 cxt.writeAndFlush(msg) 以达到同样的目的。
+```
+
+改写:
+
+```
+ //应答服务器
+        public voidchannelRead(ChannelHandlerContext ctx, Object msg) {
+            ByteBuf buf = (ByteBuf) msg;
+            String receive = buf.toString(CharsetUtil.UTF_8);
+            System.out.println("接受:"+receive);
+            // 将消息包裹成ByteBuf并通过ctx的writeAndFlush方法回写。也可以先调用write方法再调用flush方法
+            ctx.writeAndFlush(Unpooled.wrappedBuffer(("Received[" + receive + "]").getBytes()));
+
+            /*ctx.writeAndFlush(msg);*/
+        }
+```
+
+这个方法会将接受到的消息打印到控制台，并向客户端telnet回应
+
+![1564591689010](netty从零搭建一个网络通讯服务\1564591689010.png)
+
+![1564591701496](netty从零搭建一个网络通讯服务\1564591701496.png)
