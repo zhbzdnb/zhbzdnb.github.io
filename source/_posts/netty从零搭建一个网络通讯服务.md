@@ -9,7 +9,7 @@ categories:
 
 以下所有都是从某大佬翻译的netty开发文档借鉴过来的https://waylau.gitbooks.io/netty-4-user-guide
 
-# 写个抛弃服务器
+## 写个抛弃服务器
 
 ```
 import io.netty.bootstrap.ServerBootstrap;
@@ -208,3 +208,5 @@ send  test 发送字符串
 ![1564591689010](netty从零搭建一个网络通讯服务\1564591689010.png)
 
 ![1564591701496](netty从零搭建一个网络通讯服务\1564591701496.png)
+
+## 写一个时间服务器
