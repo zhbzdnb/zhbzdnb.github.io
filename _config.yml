@@ -4,7 +4,7 @@
 
 # Site
 title: 虾
-subtitle: 思想死亡 内心空洞
+subtitle: 寻找救赎之路
 description: 生活不止，代码不停。
 keywords: 虾
 author: ZHB
@@ -13,8 +13,8 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://zhbxia.gitee.io/blog
-root: /blog/
+url: http://www.zhbzdnb.top
+root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 
@@ -80,6 +80,5 @@ theme: next
 deploy:
   type: git
   repository: 
-            
-            - http://13145990275:zhb30001028@gitee.com/zhbxia/blog.git
+            - git@git.dev.tencent.com:zhbzdnb/MyHexo.git
   branch: master
