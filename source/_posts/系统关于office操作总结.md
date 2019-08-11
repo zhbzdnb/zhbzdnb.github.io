@@ -11,6 +11,8 @@ categories:
 
 出错环境 wpsoffice+jacob+win10
 
+出错逻辑 用户上传exel->转换为pdf
+
 有些用户在上传ppt时候报错，经过排查只出现在win10最新的一些版本.
 
 但有些客户的win10最新又没问题。
