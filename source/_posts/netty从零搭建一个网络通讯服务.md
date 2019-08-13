@@ -210,3 +210,343 @@ send  test 发送字符串
 ![1564591701496](netty从零搭建一个网络通讯服务\1564591701496.png)
 
 ## 写一个时间服务器
+
+作用客户端启动时向服务端发送一个时间
+
+客户端启动类
+
+```
+package Netty;
+
+import io.netty.bootstrap.Bootstrap;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelInitializer;
+import io.netty.channel.ChannelOption;
+import io.netty.channel.EventLoopGroup;
+import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.socket.SocketChannel;
+import io.netty.channel.socket.nio.NioSocketChannel;
+
+public class TimeClient {
+
+
+        public static void main(String[] args) throws Exception {
+
+            String host = args[0];
+            int port = Integer.parseInt(args[1]);
+            EventLoopGroup workerGroup = new NioEventLoopGroup();
+
+            try {
+                Bootstrap b = new Bootstrap(); // (1)
+                b.group(workerGroup); // (2)
+                final Bootstrap channel = b.channel(NioSocketChannel.class);// (3)
+                b.option(ChannelOption.SO_KEEPALIVE, true); // (4)
+                b.handler(new ChannelInitializer<SocketChannel>() {
+                    @Override
+                    public void initChannel(SocketChannel ch) throws Exception {
+                        ch.pipeline().addLast(new TimeClientHandler());
+                    }
+                });
+
+                // 启动客户端
+                ChannelFuture f = b.connect(host, port).sync(); // (5)
+                System.out.println("时间客户端启动端口:"+port+"网络地址"+host);
+
+                // 等待连接关闭
+                f.channel().closeFuture().sync();
+            } finally {
+                workerGroup.shutdownGracefully();
+            }
+        }
+
+}
+
+```
+
+TimeClientHandler
+
+```
+package Netty;
+
+import io.netty.buffer.ByteBuf;
+import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelInboundHandlerAdapter;
+
+import java.util.Date;
+
+public class TimeClientHandler extends ChannelInboundHandlerAdapter {
+    @Override
+    public void channelRead(ChannelHandlerContext ctx, Object msg) {
+        ByteBuf m = (ByteBuf) msg; // (1)
+        try {
+            long currentTimeMillis = (m.readUnsignedInt() - 2208988800L) * 1000L;
+            System.out.println(new Date(currentTimeMillis));
+            ctx.close();
+        } finally {
+            m.release();
+        }
+    }
+
+    @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
+        cause.printStackTrace();
+        ctx.close();
+    }
+}
+```
+
+服务端
+
+```
+package Netty;
+
+import io.netty.bootstrap.ServerBootstrap;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelInitializer;
+import io.netty.channel.ChannelOption;
+import io.netty.channel.EventLoopGroup;
+import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.socket.SocketChannel;
+import io.netty.channel.socket.nio.NioServerSocketChannel;
+
+public class TimeServer {
+
+    private int port;
+
+    public TimeServer(int port) {
+        this.port = port;
+    }
+
+    public void run() throws Exception {
+        System.out.println("时间服务器启动："+port);
+        EventLoopGroup bossGroup = new NioEventLoopGroup(); // (1)
+        EventLoopGroup workerGroup = new NioEventLoopGroup();
+        try {
+            ServerBootstrap b = new ServerBootstrap(); // (2)
+            b.group(bossGroup, workerGroup)
+                    .channel(NioServerSocketChannel.class) // (3)
+                    .childHandler(new ChannelInitializer<SocketChannel>() { // (4)
+                        @Override
+                        public void initChannel(SocketChannel ch) throws Exception {
+                            ch.pipeline().addLast(new TimeServerHandler());
+                        }
+                    })
+                    .option(ChannelOption.SO_BACKLOG, 128)          // (5)
+                    .childOption(ChannelOption.SO_KEEPALIVE, true); // (6)
+
+            // 绑定端口，开始接收进来的连接
+            ChannelFuture f = b.bind(port).sync(); // (7)
+
+            // 等待服务器  socket 关闭 。
+            // 在这个例子中，这不会发生，但你可以优雅地关闭你的服务器。
+            f.channel().closeFuture().sync();
+        } finally {
+            workerGroup.shutdownGracefully();
+            bossGroup.shutdownGracefully();
+        }
+    }
+
+    public static void main(String[] args) throws Exception {
+        int port;
+        if (args.length > 0) {
+            port = Integer.parseInt(args[0]);
+        } else {
+            port = 2222;
+        }
+        new TimeServer(port).run();
+    }
+}
+
+```
+
+  TimeServerHandler
+
+```
+package Netty;
+
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelFutureListener;
+import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.util.CharsetUtil;
+
+public class TimeServerHandler extends ChannelInboundHandlerAdapter {
+    // DiscardServerHandler 继承自 ChannelInboundHandlerAdapter，这个类实现了 ChannelInboundHandler接口，ChannelInboundHandler
+    // 提供了许多事件处理的接口方法，然后你可以覆盖这些方法。现在仅仅只需要继承 ChannelInboundHandlerAdapter 类而不是你自己去实现接口方法。
+
+   /*     @Override
+        //抛弃服务器
+        public void channelRead(ChannelHandlerContext ctx, Object msg) {
+            //这里我们覆盖了 chanelRead() 事件处理方法。每当从客户端收到新的数据时，这个方法会在收到消息时被调用，这个例子中，收到的消息的类型是 ByteBuf
+            // 默默地丢弃收到的数据
+            String dateString=new SimpleDateFormat("YYYY-MM-dd HH:mm:ss").format(new Date());
+            System.out.println(dateString+"接收了");
+            ByteBuf in = (ByteBuf) msg;
+            System.out.println(in.toString(io.netty.util.CharsetUtil.US_ASCII));
+            ((ByteBuf) msg).release(); // (3)
+        }
+    */
+   @Override
+   public void channelActive(final ChannelHandlerContext ctx) { // (1)
+       final ByteBuf time = ctx.alloc().buffer(4); // (2)
+       time.writeInt((int) (System.currentTimeMillis() / 1000L + 2208988800L));
+
+       final ChannelFuture f = ctx.writeAndFlush(time); // (3)
+       f.addListener(new ChannelFutureListener() {
+
+           public void operationComplete(ChannelFuture future) {
+               assert f == future;
+               ctx.close();
+           }
+       }); // (4)
+   }
+
+    @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
+        cause.printStackTrace();
+        ctx.close();
+    }
+}
+```
+
+先启动服务端，在启动客户端看下效果
+
+![1565704842997](netty从零搭建一个网络通讯服务\1565704842997.png)
+
+![1565704858106](netty从零搭建一个网络通讯服务\1565704858106.png)
+
+搞定1
+
+### 处理一个基于流的传输
+
+关于问题所在：
+
+基于流的传输比如 TCP/IP, 接收到数据是存在 socket 接收的 buffer 中。不幸的是，**基于流的传输并不是一个数据包队列，而是一个字节队列**。意味着，**即使你发送了2个独立的数据包，操作系统也不会作为2个消息处理而仅仅是作为一连串的字节而言**。因此这是不能保证你远程写入的数据就会准确地读取。
+
+基础解决
+
+```
+public class TimeClientHandler extends ChannelInboundHandlerAdapter {
+    private ByteBuf buf;
+
+    @Override
+    public void handlerAdded(ChannelHandlerContext ctx) {
+        buf = ctx.alloc().buffer(4); // (1)
+    }
+
+    @Override
+    public void handlerRemoved(ChannelHandlerContext ctx) {
+        buf.release(); // (1)
+        buf = null;
+    }
+
+    @Override
+    public void channelRead(ChannelHandlerContext ctx, Object msg) {
+        ByteBuf m = (ByteBuf) msg;
+        buf.writeBytes(m); // (2)
+        m.release();
+
+        if (buf.readableBytes() >= 4) { // (3)
+            long currentTimeMillis = (buf.readUnsignedInt() - 2208988800L) * 1000L;
+            System.out.println(new Date(currentTimeMillis));
+            ctx.close();
+        }
+    }
+
+    @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
+        cause.printStackTrace();
+        ctx.close();
+    }
+}
+```
+
+上面这种解决只适用于4个字节的，如果是更加复杂的要增加多个 [ChannelHandler](http://netty.io/4.0/api/io/netty/channel/ChannelHandler.html) 到ChannelPipeline
+
+使用可拓展ByteToMessageDecoder 进行解决
+
+```
+public class TimeDecoder extends ByteToMessageDecoder { // (1)
+    @Override
+    protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) { // (2)
+        if (in.readableBytes() < 4) {
+            return; // (3)
+        }
+
+        out.add(in.readBytes(4)); // (4)
+    }
+}
+```
+
+得很简单。
+
+2.每当有新数据接收的时候，ByteToMessageDecoder 都会调用 decode() 方法来处理内部的那个累积缓冲。
+
+3.Decode() 方法可以决定当累积缓冲里没有足够数据时可以往 out 对象里放任意数据。当有更多的数据被接收了 ByteToMessageDecoder 会再一次调用 decode() 方法。
+
+4.如果在 decode() 方法里增加了一个对象到 out 对象里，这意味着解码器解码消息成功。ByteToMessageDecoder 将会丢弃在累积缓冲里已经被读过的数据。请记得你不需要对多条消息调用 decode()，ByteToMessageDecoder 会持续调用 decode() 直到不放任何数据到 out 里。
+
+修改一下timeclien的代码
+
+### 用POJO代替ByteBuf
+
+
+
+```
+public class UnixTime {
+
+    private final long value;
+
+    public UnixTime() {
+        this(System.currentTimeMillis() / 1000L + 2208988800L);
+    }
+
+    public UnixTime(long value) {
+        this.value = value;
+    }
+
+    public long value() {
+        return value;
+    }
+
+    @Override
+    public String toString() {
+        return new Date((value() - 2208988800L) * 1000L).toString();
+    }
+}
+```
+
+编码器的实现
+
+```
+public class TimeEncoder extends MessageToByteEncoder<UnixTime> {
+    @Override
+    protected void encode(ChannelHandlerContext ctx, UnixTime msg, ByteBuf out) {
+        out.writeInt((int)msg.value());
+    }
+}
+```
+
+修改一下 TimeServerHandler 的代码。
+
+```
+@Override
+public void channelActive(ChannelHandlerContext ctx) {
+    ChannelFuture f = ctx.writeAndFlush(new UnixTime());
+    f.addListener(ChannelFutureListener.CLOSE);
+}
+```
+
+修改解码器
+
+```
+@Override
+public void channelRead(ChannelHandlerContext ctx, Object msg) {
+    UnixTime m = (UnixTime) msg;
+    System.out.println(m);
+    ctx.close();
+}
+```
+
