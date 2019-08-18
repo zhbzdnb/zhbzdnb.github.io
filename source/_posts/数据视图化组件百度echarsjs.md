@@ -2,9 +2,9 @@
 title: 数据视图化组件百度echars.js
 date: 2019-05-26 15:00:05
 tags:
--js相关
+- js相关
 categories:
--js相关
+- js相关
 ---
 
 #### 前言
