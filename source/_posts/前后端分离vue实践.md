@@ -37,7 +37,7 @@ element-ui https://element.eleme.cn/#/zh-CN/guide/nav
 
 **传统意义上的 JavaScript 运行在浏览器上，Chrome 使用的 JavaScript 引擎是 V8，Node.js 是一个运行在服务端的框架，它的底层就使用了 V8 引擎，这样就可以使用javascript去编写一些服务端的程序，这样也就实现了用javaScript去开发 Apache + PHP 以及 Java Servlet所开发的服务端功能，这样做的好处就是前端和后端都采用javascript，即开发一份js程序即可以运行在前端也可以运行的服务端，这样比一个应用使用多种语言在开发效率上要高，不过node.js属于新兴产品，一些公司也在尝试使用node.js完成一些业务领域，node.js基于V8引擎，基于事件驱动机制，在特定领域性能出色，比如用node.js实现消息推送、状态监控等的业务功能非常合适。**
 
-关于从github上面clone的开源vue项目也会用到webpack的一些知识。
+关于从github上面clone的开源vue项目并去本地启动也会用到webpack的一些知识。
 
 可简单安装实践。
 
