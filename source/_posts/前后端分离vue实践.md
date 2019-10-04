@@ -42,3 +42,5 @@ element-ui https://element.eleme.cn/#/zh-CN/guide/nav
 可简单安装实践。
 
 个人觉得越新的框架，越是简单，这是一种趋势。
+
+项目产品迎合竞争做出优化，造福的是我们。
