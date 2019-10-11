@@ -7,22 +7,30 @@ categories:
 - 工具类
 ---
 
-```
-package tool;
-import java.text.SimpleDateFormat;
-import java.util.Date ;
-import java.util.Random ;
+国庆快乐
 
-/**
- * 按照日期时间戳生成随机字符串
- */
-public class IPTimeStamp {
+要上班了
 
-    private static SimpleDateFormat sdf = null ;
-    public IPTimeStamp(){}
+不快乐了
+
+ * 
 
 
 
+    package tool;
+    import java.text.SimpleDateFormat;
+    import java.util.Date ;
+    import java.util.Random ;
+    
+    /**
+    
+    - 按照日期时间戳生成随机字符串
+      */
+      public class IPTimeStamp {
+    
+      private static SimpleDateFormat sdf = null ;
+      public IPTimeStamp(){}
+    
     /**
      * 按照日期时间戳拼凑出一个随机字符串
      * @return
@@ -42,7 +50,7 @@ public class IPTimeStamp {
         }
         return buf.toString() ;
     }
-
+    
     /**
      * 按照指定的格式取得日期
      * @return
@@ -51,7 +59,7 @@ public class IPTimeStamp {
         this.sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS") ;
         return this.sdf.format(new Date()) ;
     }
-
+    
     /**
      * 得到相应格式的日期
      * @return
@@ -60,7 +68,7 @@ public class IPTimeStamp {
         sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS") ;
         return sdf.format(new Date()) ;
     }
-
+    
     /**
      * 给传入的字符串，按照指定的长度进行添0操作
      * @param str
@@ -76,12 +84,13 @@ public class IPTimeStamp {
         //System.out.println(s.toString());
         return s.toString() ;
     }
-
+    
     //测试结果
     public static void main(String args[]){
         System.out.println(IPTimeStamp.getIPTimeRand("192.168.1.1")) ;
     }
-}
+    }
 
-```
+
+
 
