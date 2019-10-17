@@ -127,7 +127,38 @@ java为了解决共享资源这个问题，弄出了runningable接口，将线�
 
 使用同一runnable接口构造不同Thread实例
 
-![1569080006899](线程基础No-2\1569080006899.png)
+```
+public class Runningablesharedresource implements  Runnable{
+
+    private final static  int MAX=500;
+    private  int index=1;//不再使用static修饰
+    public  void run(){
+        while(index<=MAX)
+        {
+            System.out.println("人事"+Thread.currentThread()+"招聘到了 第"+(index++)+"个java开发");
+            try {
+                Thread.sleep(100);
+            }catch (InterruptedException e)
+            {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void main(String[] args)
+    {
+        final Runningablesharedresource runningablesharedresource=new Runningablesharedresource();
+        Thread thread1=new Thread(runningablesharedresource,"001");
+        Thread thread2=new Thread(runningablesharedresource,"002");
+        Thread thread3=new Thread(runningablesharedresource,"003");
+        thread1.start();
+        thread2.start();
+        thread3.start();
+    }
+
+}
+
+```
 
 可以看到这样的效果和static是一样的
 
