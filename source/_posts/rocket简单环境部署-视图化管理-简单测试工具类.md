@@ -1,8 +1,8 @@
 ---
 title: rocket简单环境部署+视图化管理+简单测试工具类
 date: 2019-12-15 23:33:08
-tags: - mq
-categories: - mq
+tags: mq
+categories: mq
 ---
 
 ## 环境部署
