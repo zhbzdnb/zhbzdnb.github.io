@@ -86,7 +86,7 @@ baidu_url_submit:
 deploy:
     type: git    
     repository: 
-            - git@git.dev.tencent.com:zhbzdnb/MyHexo.git
+            - git@e.coding.net:zhbzdnb/MyHexo.git
     branch: master
 
  
